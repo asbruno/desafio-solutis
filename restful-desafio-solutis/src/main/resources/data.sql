@@ -1,0 +1,1 @@
+insert into resultado_analise (id, string, vogal, tempo_total) values (99999, 'aAbBABacafe', 'e', '10ms');

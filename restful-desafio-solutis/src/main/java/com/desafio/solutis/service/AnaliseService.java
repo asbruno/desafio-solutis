@@ -1,27 +1,26 @@
 package com.desafio.solutis.service;
 
-import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.desafio.solutis.dao.ResultadoDAO;
 import com.desafio.solutis.model.Resultado;
 
 @Service
 public class AnaliseService {
 
+	@Autowired
+	private ResultadoDAO dao;
+	
 	public List<Resultado> getAll() {
-		//TODO, implementar o DAO
-		return Arrays.asList(
-				new Resultado("Bruno", null, "10ms"),
-				new Resultado("Artur", null, "10ms"),
-				new Resultado("Desirrê", null, "10ms")
-			);
+		return dao.findAll();
 	}
 
 	public Resultado processarAnaliseLexica(Resultado pResultado) {
-		//TODO, implementar lógica para analise da string
-		return pResultado;
+		//TODO, implementar lógica para analise da string	
+		return dao.save(pResultado);
 	}
 	
 }

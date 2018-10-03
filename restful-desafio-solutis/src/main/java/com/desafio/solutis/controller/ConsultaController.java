@@ -2,6 +2,8 @@ package com.desafio.solutis.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +34,7 @@ public class ConsultaController {
 	
 	@PostMapping
 	public ResponseEntity<Resultado> processarAnaliseString(
-			@RequestBody Resultado pResultado
+			@RequestBody @Valid Resultado pResultado
 		) {
 		return new ResponseEntity<Resultado>(
 				service.processarAnaliseLexica(pResultado),

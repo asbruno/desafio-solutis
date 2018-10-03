@@ -1,9 +1,26 @@
 package com.desafio.solutis.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+
+@Entity(name="resultado_analise")
 public class Resultado {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	private Integer id;
+
+	@NotBlank(message="{notblank}")
 	private String string;
+	
+	@Column
 	private String vogal;
+	
+	@Column
 	private String tempoTotal;
 	
 	public Resultado() {}

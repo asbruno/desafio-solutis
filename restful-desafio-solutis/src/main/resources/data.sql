@@ -1,1 +1,1 @@
-insert into resultado_analise (id, string, vogal, tempo_total) values (99999, 'aAbBABacafe', 'e', '10ms');
+insert into resultado_analise (string, vogal, tempo_total) values ('aAbBABacafe', 'e', '10ms');

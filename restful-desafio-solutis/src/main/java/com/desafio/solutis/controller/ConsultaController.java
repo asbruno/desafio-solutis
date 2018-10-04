@@ -16,13 +16,26 @@ import org.springframework.web.bind.annotation.RestController;
 import com.desafio.solutis.model.Resultado;
 import com.desafio.solutis.service.AnaliseService;
 
+/**
+ * Classe responsável pela gestão do modelo RESTful para o FrontEnd.
+ * >>>>> http://servidor:porta/analise
+ * 
+ * @author Bruno Souza
+ *
+ */
 @RestController
 @RequestMapping("/analise")
 public class ConsultaController {
 
 	@Autowired
 	private AnaliseService service;
-	
+
+	/**
+	 * Método responsável pela gerencia de requisições GET.
+	 * 
+	 * 
+	 * @return, lista de analise já realizada pelo sistema e seus resultados;
+	 */
 	@GetMapping
 	public ResponseEntity<List<Resultado>> listagemAnalises() {
 		List<Resultado> lListaAnalise = service.getAll();
@@ -32,6 +45,13 @@ public class ConsultaController {
 			);
 	}
 	
+	/**
+	 * 
+	 * 	 Método responsável pela gerencia de requisições POST.
+	 * 
+	 * @param pResultado, atributo que contém a string a ser analisado.
+	 * @return, json com o resultado da analise léxica.
+	 */
 	@PostMapping
 	public ResponseEntity<Resultado> processarAnaliseString(
 			@RequestBody @Valid Resultado pResultado

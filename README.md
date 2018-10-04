@@ -13,7 +13,7 @@ Terça - 02.10 </br>
 Estudo de GIT e seus comandos e criação do projeto no GIThub
 Estudo da API Stream no Java 8.
 
-Quarta = 03.10 </br>
+Quarta - 03.10 </br>
 Inicio da implementação 
 	- Camada de Controller
 	- Camada de Service

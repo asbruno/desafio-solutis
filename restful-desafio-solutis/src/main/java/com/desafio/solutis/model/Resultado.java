@@ -5,6 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
+/**
+ * Classe que representa uma entidade.
+ * 
+ * @author Bruno Souza.
+ *
+ */
 @Entity(name="resultado_analise")
 public class Resultado {
 

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.desafio.solutis.dao.ResultadoDAO;
 import com.desafio.solutis.model.Resultado;
@@ -34,7 +36,8 @@ public class AnaliseService {
 	 * 
 	 * @param pResultado, objeto que contém a strng a ser analisada.
 	 * @return objeto da classe com.desafio.solutis.model.Resultado que contém dados da analise.
-	 */
+	 */	
+	@Transactional(propagation=Propagation.REQUIRED)
 	public Resultado processarAnaliseLexica(Resultado pResultado) {
 		//TODO, implementar lógica para analise da string	
 		return dao.save(pResultado);

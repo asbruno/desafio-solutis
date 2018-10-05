@@ -1,5 +1,6 @@
 package com.desafio.solutis.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -39,11 +40,14 @@ public class ConsultaController {
 	 * @return, lista de analise já realizada pelo sistema e seus resultados;
 	 */
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Resultado>> listagemAnalises() {
+	public ResponseEntity<List<ResultadoVO>> listagemAnalises() {
+		
 		List<Resultado> lListaAnalise = service.getAll();
-		//TODO, realizar o converte para ResultadoVO, via API de stream
-		return new ResponseEntity<List<Resultado>>(
-				lListaAnalise,
+		List<ResultadoVO> listaVO = new ArrayList<>();
+		lListaAnalise.stream().map(i-> listaVO.add(ResultadoVO.create(i)));
+		
+		return new ResponseEntity<List<ResultadoVO>>(
+				listaVO,
 				(lListaAnalise.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK)
 			);
 	}

@@ -26,11 +26,11 @@ public class Resultado {
 	private String vogal;
 	
 	@Column
-	private String tempoTotal;
+	private Long tempoTotal;
 	
 	public Resultado() {}
 	
-	public Resultado(String string, String vogal, String tempoTotal) {
+	public Resultado(String string, String vogal, Long tempoTotal) {
 		setString(string);
 		setVogal(vogal);
 		setTempoTotal(tempoTotal);
@@ -52,11 +52,11 @@ public class Resultado {
 		this.vogal = vogal;
 	}
 	
-	public String getTempoTotal() {
+	public Long getTempoTotal() {
 		return tempoTotal;
 	}
 	
-	public void setTempoTotal(String tempoTotal) {
+	public void setTempoTotal(Long tempoTotal) {
 		this.tempoTotal = tempoTotal;
 	}
 

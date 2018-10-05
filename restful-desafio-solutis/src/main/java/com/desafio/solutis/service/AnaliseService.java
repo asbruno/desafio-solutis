@@ -1,5 +1,7 @@
 package com.desafio.solutis.service;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.desafio.solutis.dao.ResultadoDAO;
 import com.desafio.solutis.model.Resultado;
+import com.desafio.solutis.parser.Parser;
 
 /**
  * Classe que realizar a lógica de negócio e acesso ao DAO
@@ -21,6 +24,9 @@ public class AnaliseService {
 
 	@Autowired
 	private ResultadoDAO dao;
+	
+	@Autowired
+	private Parser parser;
 	
 	/**
 	 * Gera uma lista de todos os Resultado já analisados.
@@ -39,7 +45,16 @@ public class AnaliseService {
 	 */	
 	@Transactional(propagation=Propagation.REQUIRED)
 	public Resultado processarAnaliseLexica(Resultado pResultado) {
-		//TODO, implementar lógica para analise da string	
+		
+		Instant inicio = Instant.now();
+		pResultado.setVogal(
+			parser.iniciarAnaliseTexto(pResultado.getString())
+		);
+		Instant fim = Instant.now();
+		Duration duracao = Duration.between(inicio, fim);
+		long tempoDuracao = duracao.toMillis();
+		pResultado.setTempoTotal(tempoDuracao);
+		
 		return dao.save(pResultado);
 	}
 	

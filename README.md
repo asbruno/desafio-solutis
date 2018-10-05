@@ -18,3 +18,9 @@ Inicio da implementação
 	- Camada de Controller
 	- Camada de Service
 	- Camada de Repositorio
+
+Quarta - 05.10 </br>
+Implementação 
+	- Lógica de extração da vogal, desafio
+	- Camada de VO
+	- Alguns ajustes de código.

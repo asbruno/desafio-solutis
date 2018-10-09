@@ -24,3 +24,15 @@ Implementação
 	- Lógica de extração da vogal, desafio
 	- Camada de VO
 	- Alguns ajustes de código.
+
+Sabado - 07.10 </br>
+Estudo 
+	- Angular 6 e alguns exemplos
+
+Segunda - 09.10 </br>
+Implementação 90%, FrontEnd
+	- Angular 6
+
+Terça - 10.10 </br>
+Implementação 100%, FrontEnd
+	- Angular 6 [Revisão]

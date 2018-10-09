@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AnaliseService } from '../analise.service';
-import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
+import { FormGroup } from '@angular/forms';
+
+import { AnaliseService } from './analise.service';
 
 @Component({
   selector: 'app-analise',
@@ -9,16 +10,20 @@ import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 })
 export class AnaliseComponent implements OnInit {
 
-  analise:any;
+  listaAnalises: Array<any>;
+  analise: any;
 
-  constructor(private analiseService:AnaliseService) { }
+  constructor(private service: AnaliseService) {}
 
   ngOnInit() {
-    this.processar();
+    this.analise = {};
+    this.service.listar().subscribe(resposta => this.listaAnalises = resposta);
   }
 
-  processar() {
-    this.analiseService.processar()
-      .subscribe(dados => this.analise = dados);
+  processarForm(frm: FormGroup) {
+    this.service.criar(this.analise).subscribe(resposta => {this.listaAnalises.push(resposta);
+      frm.reset();
+    });
   }
+
 }

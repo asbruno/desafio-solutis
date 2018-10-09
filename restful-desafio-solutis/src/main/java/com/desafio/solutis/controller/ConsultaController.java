@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +29,8 @@ import com.desafio.solutis.vo.ResultadoVO;
  */
 @RestController
 @RequestMapping("/analise")
+//No 'Access-Control-Allow-Origin' header is present on the requested resource.
+@CrossOrigin
 public class ConsultaController {
 
 	@Autowired
@@ -39,17 +42,16 @@ public class ConsultaController {
 	 * 
 	 * @return, lista de analise já realizada pelo sistema e seus resultados;
 	 */
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="/listagem", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ResultadoVO>> listagemAnalises() {
-		
 		List<Resultado> lListaAnalise = service.getAll();
 		List<ResultadoVO> listaVO = new ArrayList<>();
-		lListaAnalise.stream().map(i-> listaVO.add(ResultadoVO.create(i)));
-		
+		for (Resultado tResultado : lListaAnalise)
+			listaVO.add(new ResultadoVO(tResultado));
 		return new ResponseEntity<List<ResultadoVO>>(
-				listaVO,
-				(lListaAnalise.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK)
-			);
+			listaVO,
+			(lListaAnalise.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK)
+		);
 	}
 	
 	/**
@@ -64,7 +66,7 @@ public class ConsultaController {
 			@RequestBody @Valid Resultado pResultado
 		) {
 		return new ResponseEntity<ResultadoVO>(
-				ResultadoVO.create(service.processarAnaliseLexica(pResultado)),
+				new ResultadoVO(service.processarAnaliseLexica(pResultado)),
 				HttpStatus.OK
 			);
 	}

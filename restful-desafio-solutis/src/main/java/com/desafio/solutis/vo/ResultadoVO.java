@@ -5,6 +5,8 @@ import com.desafio.solutis.model.Resultado;
 /**
  * Classe que server de apoio a formação do JSON e transferencia de dados.
  * 
+ * Padrão para conversão de formatação.
+ * 
  * @author Bruno Andrade
  *
  */
@@ -15,17 +17,15 @@ public class ResultadoVO {
 	private String tempoTotal;
 	
 	/**
-	 * Método que realizar o parser do objeto model/entity para o VO.
+	 * Construtor que realizar o parser do objeto model/entity para o VO.
 	 * 
 	 * @param entity, Entidade que tá vinculado ao banco de dados.
 	 * @return, objeto já no modelo de envio de dados.
 	 */
-	public static ResultadoVO create(Resultado entity) {
-		ResultadoVO vo = new ResultadoVO();
-		vo.setString(entity.getString());
-		vo.setVogal(entity.getVogal());
-		vo.setTempoTotal(String.valueOf(entity.getTempoTotal()).concat("ms"));
-		return vo;
+	public ResultadoVO(Resultado entity) {
+		setString(entity.getString());
+		setVogal(entity.getVogal());
+		setTempoTotal(String.valueOf(entity.getTempoTotal()).concat("ms"));
 	}
 	
 	public String getString() {

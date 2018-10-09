@@ -54,6 +54,8 @@ public class Parser {
 			
 		if (result.size()==1)
 			return result.get(0).getVogal();		
+		if (result.isEmpty())
+			return null;
 		
 		//TODO, parametrizar mensagem, retirar a string do código....
 		throw new RuntimeException("ERRO inesperado");

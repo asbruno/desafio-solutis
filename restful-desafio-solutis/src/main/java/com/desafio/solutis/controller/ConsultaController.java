@@ -1,6 +1,5 @@
 package com.desafio.solutis.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.desafio.solutis.model.Resultado;
 import com.desafio.solutis.service.AnaliseService;
-import com.desafio.solutis.vo.ResultadoVO;
 
 /**
  * Classe responsável pela gestão do modelo RESTful para o FrontEnd.
@@ -43,13 +41,10 @@ public class ConsultaController {
 	 * @return, lista de analise já realizada pelo sistema e seus resultados;
 	 */
 	@GetMapping(value="/listagem", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ResultadoVO>> listagemAnalises() {
+	public ResponseEntity<List<Resultado>> listagemAnalises() {
 		List<Resultado> lListaAnalise = service.getAll();
-		List<ResultadoVO> listaVO = new ArrayList<>();
-		for (Resultado tResultado : lListaAnalise)
-			listaVO.add(new ResultadoVO(tResultado));
-		return new ResponseEntity<List<ResultadoVO>>(
-			listaVO,
+		return new ResponseEntity<List<Resultado>>(
+			lListaAnalise,
 			(lListaAnalise.isEmpty() ? HttpStatus.NO_CONTENT : HttpStatus.OK)
 		);
 	}
@@ -62,11 +57,11 @@ public class ConsultaController {
 	 * @return, json com o resultado da analise léxica.
 	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResultadoVO> processarAnaliseString(
+	public ResponseEntity<Resultado> processarAnaliseString(
 			@RequestBody @Valid Resultado pResultado
 		) {
-		return new ResponseEntity<ResultadoVO>(
-				new ResultadoVO(service.processarAnaliseLexica(pResultado)),
+		return new ResponseEntity<Resultado>(
+				service.processarAnaliseLexica(pResultado),
 				HttpStatus.OK
 			);
 	}
